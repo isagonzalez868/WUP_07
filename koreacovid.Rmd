@@ -1,7 +1,7 @@
 ---
 title: "covid 19"
-author: "Dr K"
-date: "5/2/2020"
+author: "Isabella Gonzalez"
+date: "Spring 2021"
 output:
   html_document: default
   pdf_document: default
@@ -24,11 +24,14 @@ state of a patient must be died or alive - we adjust that as well
   
 # Question 1 - Is dying independent of sex
 
-
+$h_0$ Covid19 deaths in Korea are unrelated to sex.
+$h_A$ Covid19 deaths in Korea are related to the sex of patient.
 
 
 Table of patients:
 ```{r}
+kRdata$Sex = as.factor(kRdata$Sex)
+kRdata$result= as.factor(kRdata$result)
 
 # cross tabulation, patient state by gender
 
@@ -38,16 +41,33 @@ with(kRdata, table(Sex, result))
 
 ## We create two bar charts - one based on frequency and the other on percent, use ggplot commands to do this
 
-`
 
+```{r}
+barchartGC(~class + Sex,data=ucdavis1)
+barchartGC(~class + Sex,data=ucdavis1, type="percent")
+
+```
+```{r}
+dd2 <- kRdata %>% group_by(result,Sex) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+basicC <- ggplot(dd2,aes(x=Sex,y=count,fill=result))
+basicC + geom_bar(stat="identity",position="dodge")
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=Sex,y=prcnt*100,fill=result)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
   
+Among the females the percentage that died were about 45% and males were 65%. Therefore in this particular study males were more likely to die than females. 
 
-
-
-
-
-  
 ## Numerical results
+
+
+```{r}
+table1 <- xtabs(~result + Sex, data=dd2)
+rowPerc(table1)
+colPerc(table1)
+```
 
 
 ## Inferential results 
