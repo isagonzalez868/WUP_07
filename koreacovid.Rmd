@@ -44,8 +44,8 @@ with(kRdata, table(Sex, result))
 
 
 ```{r}
-barchartGC(~class + Sex,data=ucdavis1)
-barchartGC(~class + Sex,data=ucdavis1, type="percent")
+barchartGC(~result + Sex,data=kRdata)
+barchartGC(~result + Sex,data=kRdata, type="percent")
 
 ```
 
@@ -84,4 +84,4 @@ P value is 0.001 which is so low that we reject the null hypothesis.
 
 ## Conclusions
 
-With all
+After looking through all the data, we can conclude that Covid19 deaths in Korea are related to the sex of the patient.
