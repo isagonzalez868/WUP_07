@@ -48,6 +48,7 @@ barchartGC(~class + Sex,data=ucdavis1)
 barchartGC(~class + Sex,data=ucdavis1, type="percent")
 
 ```
+
 ```{r}
 dd2 <- kRdata %>% group_by(result,Sex) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
@@ -59,7 +60,7 @@ basicCC <- ggplot(dd2,aes(x=Sex,y=prcnt*100,fill=result))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
   
-Among the females the percentage that died were about 45% and males were 65%. Therefore in this particular study males were more likely to die than females. 
+Among the females the percentage that died were about 45% and males were 65%. Also the frequency of death was at a higher level with men than women. Therefore in this particular study males were more likely to die than females. 
 
 ## Numerical results
 
