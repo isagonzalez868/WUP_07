@@ -25,6 +25,7 @@ state of a patient must be died or alive - we adjust that as well
 # Question 1 - Is dying independent of sex
 
 $h_0$ Covid19 deaths in Korea are unrelated to sex.
+
 $h_A$ Covid19 deaths in Korea are related to the sex of patient.
 
 
@@ -64,16 +65,22 @@ Among the females the percentage that died were about 45% and males were 65%. Th
 
 
 ```{r}
-table1 <- xtabs(~result + Sex, data=dd2)
+table1 <- xtabs(~result + Sex, data=kRdata)
 rowPerc(table1)
 colPerc(table1)
 ```
-
+According to the numerical results males are 3 times more likely to die than females which is 1.4. 
 
 ## Inferential results 
 
-
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+P value is 0.001 which is so low that we reject the null hypothesis. 
 
 
 ## Conclusions
 
+With all
